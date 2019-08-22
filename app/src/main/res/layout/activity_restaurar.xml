@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/gradient1"
+    tools:context=".restaurar">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00B2CB"
+        android:orientation="horizontal"
+        android:paddingTop="38dp"
+        android:paddingBottom="12dp">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/hamburger" />
+
+            <TextView
+                android:id="@+id/busqueda"
+                android:layout_width="274dp"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="Restaurar números"
+                android:textColor="#ffff"
+                android:textSize="27sp" />
+
+            <ImageView
+                android:layout_width="47dp"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/lupa" />
+
+        </TableRow>
+    </TableLayout>
+    <LinearLayout
+        android:id="@+id/listviewlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footerlayout">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView2"
+            android:cacheColorHint="#00FF0000"
+            android:background="#FFFF"
+            android:layout_marginTop="100sp"></ListView>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/footerlayout"
+        android:layout_height="180sp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="#22456D">
+
+        <Button
+            android:id="@+id/restaurar"
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_above="@+id/footerlayout"
+            android:layout_marginBottom="3dip"
+            android:background="@drawable/b_rounded"
+            android:text="Restaurar"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="196dp"
+            tools:layout_editor_absoluteY="630dp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/redTransparent">
+
+    <LinearLayout android:id="@+id/footerlayout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="340dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="80dp"
+            android:text="No te preocupes por esta operacción \nya que en cualquier momento \npodrás restaurar el estado original \n de tus contactos desde la aplicación"
+            android:gravity="center"
+            android:textColor="#ffff"
+            android:lineHeight="22dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="55dp"/>
+        <Button
+            android:id="@+id/entendido"
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_above="@+id/footerlayout"
+            android:background="@drawable/b_rounded"
+            android:text="Entendido"
+            android:layout_marginBottom="25dip"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+</LinearLayout>

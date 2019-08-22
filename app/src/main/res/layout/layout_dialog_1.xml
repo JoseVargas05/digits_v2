@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/redTransparent">
+
+    <LinearLayout android:id="@+id/footerlayout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="340dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="80dp"
+            android:text="Detectamos también 30 números \nmenores a 9 dígitos \n¿de sea agregar su clave de larga \n distancia en este momento?"
+            android:gravity="center"
+            android:textColor="#ffff"
+            android:lineHeight="21dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="55dp"/>
+        <Button
+            android:id="@+id/addClave"
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_above="@+id/footerlayout"
+            android:background="@drawable/b_rounded"
+            android:text="Si agregar clave"
+            android:layout_marginBottom="25dip"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"/>
+        <Button
+            android:id="@+id/masTarde"
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_above="@+id/footerlayout"
+            android:layout_marginBottom="10dip"
+            android:background="@drawable/b_rounded"
+            android:text="Agregar mas tarde"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
