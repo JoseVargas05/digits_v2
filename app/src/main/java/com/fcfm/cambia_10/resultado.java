@@ -455,7 +455,7 @@ public class resultado extends AppCompatActivity {
                 //Update adapter
                 adapter.UpdateRecords(mContactList);
                 //Display msg with id from view.getTag
-                Toast.makeText(getApplicationContext(), "Contacto id: " + result.getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Contacto id: " + result.getId(), Toast.LENGTH_SHORT).show();
             }
         });
         selectAll = findViewById(R.id.selectAll);
