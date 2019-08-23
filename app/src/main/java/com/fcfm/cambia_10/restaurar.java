@@ -73,8 +73,9 @@ public class restaurar extends AppCompatActivity {
             while (!cursor.isAfterLast()) {
                 String number = cursor.getString(3);
                 String clean = number.replaceAll("[^\\d]", "" );
-                    lastFourDigits = clean.substring(clean.length() - 10);
-                mRestauraList.add(new restaurar_result(cursor.getInt(1), cursor.getString(2), "+52 ("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), "", false));
+
+                    mRestauraList.add(new restaurar_result(cursor.getInt(1), cursor.getString(2), cursor.getString(3), "", false));
+
                /* mRestauraList.add(new restaurar_result(cursor.getInt(1), cursor.getString(2), cursor.getString(3), "", false));*/
                 cursor.moveToNext();
             }

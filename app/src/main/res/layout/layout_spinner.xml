@@ -4,6 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/redTransparent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/baseline_close_white_48"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:id="@+id/close"/>
 
     <LinearLayout android:id="@+id/footerlayout"
         android:layout_height="match_parent"
@@ -14,7 +21,7 @@
         <TextView
             android:layout_width="300dp"
             android:layout_height="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
             android:text="Elige un estado"
             android:gravity="left"
             android:textColor="#ffff"

@@ -47,6 +47,13 @@ public class resumen extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent res = new Intent(getApplicationContext(), resultado.class);
+        startActivity(res);
+        finish();
+    }
+
     public void getData(){
 
         lvResumen = findViewById(R.id.listView3);
@@ -84,7 +91,12 @@ public class resumen extends AppCompatActivity {
         contact_result result;
         for (int i = Seleccion.size() - 1; i >= 0; i--) {
             result = Seleccion.get(i);
-            mResumenList.add(new resumen_result(result.getId(), result.getNombre(), "+52 "+ result.getNumero()));
+            if(result.getNacional().equals("")){
+                mResumenList.add(new resumen_result(result.getId(), result.getNombre(), "+52 "+ result.getNumero(), ""));
+            }else{
+                mResumenList.add(new resumen_result(result.getId(), result.getNombre(), result.getNumero(), result.getNacional()));
+            }
+
         }
         //Init adapter
         adapter = new resumen_result_adapter(getApplicationContext(), mResumenList);
@@ -98,7 +110,7 @@ public class resumen extends AppCompatActivity {
                 //Update adapter
                 adapter.UpdateRecords(mResumenList);
                 //Display msg with id from view.getTag
-                Toast.makeText(getApplicationContext(), "Contacto id: " + result.getId(), Toast.LENGTH_SHORT).show();
+
             }
         });
         guardar = findViewById(R.id.guardar);
@@ -154,10 +166,12 @@ public class resumen extends AppCompatActivity {
             getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
         }
         db.close();
-        Toast.makeText(getApplicationContext(), "idResgistro: "+idResultante,Toast.LENGTH_SHORT).show();
+
         if(idResultante != null){
             Intent res = new Intent(getApplicationContext(), fin.class);
             startActivity(res);
+        }else{
+            Toast.makeText(getApplicationContext(), "No hay contactos para convertir",Toast.LENGTH_SHORT).show();
         }
 
     }

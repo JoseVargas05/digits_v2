@@ -43,6 +43,7 @@ public class resumen_result_adapter extends BaseAdapter {
 
             holder.tvName = view.findViewById(R.id.nombre);
             holder.tvNumber = view.findViewById(R.id.numero);
+            holder.tvNacional = view.findViewById(R.id.estado);
 
             //Save contact id to tag
             view.setTag(holder);
@@ -53,6 +54,7 @@ public class resumen_result_adapter extends BaseAdapter {
         //Set text for TextView
         holder.tvName.setText(mresu_result_List.get(i).getNombre());
         holder.tvNumber.setText(mresu_result_List.get(i).getNumero());
+        holder.tvNacional.setText(mresu_result_List.get(i).getNacional());
 
         return view;
     }
@@ -66,6 +68,7 @@ public class resumen_result_adapter extends BaseAdapter {
     class ViewHolder{
         TextView tvName;
         TextView tvNumber;
+        TextView tvNacional;
     }
 
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class fijo_result_adapter extends BaseAdapter {
-
+    private ViewHolder holder = null;
     private Context mContext;
     private List<fijo_result> mfijo_result_List;
 
@@ -36,7 +36,7 @@ public class fijo_result_adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = null;
+
 
         if(view == null){
             view = View.inflate(mContext, R.layout.item_list_result_2, null);
@@ -73,7 +73,6 @@ public class fijo_result_adapter extends BaseAdapter {
     }
     public void UpdateRecords(List<fijo_result> mfijo_result_List){
         this.mfijo_result_List = mfijo_result_List;
-
         notifyDataSetChanged();
     }
 

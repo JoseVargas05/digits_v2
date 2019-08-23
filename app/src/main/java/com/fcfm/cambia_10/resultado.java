@@ -44,7 +44,13 @@ public class resultado extends AppCompatActivity {
     private Button addClave;
     private Button addLater;
     private Button Ok;
+    private Button Ok2;
     private Dialog dialogRef;
+    private Button closes;
+    private Button closes2;
+    private Button closes3;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,24 +89,43 @@ public class resultado extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                 seleccion = new ArrayList<>();
-                 contact_result result;
-                for (int i = mContactList.size() - 1; i >= 0; i--){
-                    result = mContactList.get(i);
-                    if(result.isSelected()){
-                        seleccion.add(new contact_result(result.getId(), result.getNombre(), "n", "n", result.getNumero(), false));
-                        result.setSelected(false);
+                final Dialog dialog3;
+                dialog3 = new Dialog(resultado.this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+                dialog3.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog3.setCancelable(false);
+                dialog3.setContentView(R.layout.layout_dialog_2);
+
+                dialog3.getWindow().setBackgroundDrawable(draw);
+
+                Ok2 = dialog3.findViewById(R.id.entendido);
+                Ok2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        seleccion = new ArrayList<>();
+                        contact_result result;
+                        for (int i = mContactList.size() - 1; i >= 0; i--){
+                            result = mContactList.get(i);
+                            if(result.isSelected()){
+                                if(result.getNacional().equals("")){
+                                    seleccion.add(new contact_result(result.getId(), result.getNombre(), "", "", result.getNumero(), false));
+                                }else{
+                                    seleccion.add(new contact_result(result.getId(), result.getNombre(), "Lada sin costo", "", result.getNumero(), false));
+                                }
+                                result.setSelected(false);
+                            }
+                        }
+                        dialog.dismiss();
+                        dialog3.dismiss();
+                        Intent intent3 = new Intent(getApplicationContext(), resumen.class);
+                        intent3.putExtra("Selecciones", (Serializable) seleccion);
+                        startActivity(intent3);
                     }
-                }
+                });
 
-                dialog.dismiss();
-                Intent intent = new Intent(getApplicationContext(), resumen.class);
-                intent.putExtra("Selecciones", (Serializable) seleccion);
-                startActivity(intent);
-
+                dialog3.show();
             }
         });
-
         addClave = dialog.findViewById(R.id.addClave);
         addClave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +150,11 @@ public class resultado extends AppCompatActivity {
                         for (int i = mContactList.size() - 1; i >= 0; i--){
                             result = mContactList.get(i);
                             if(result.isSelected()){
-                                seleccion.add(new contact_result(result.getId(), result.getNombre(), "n", "n", result.getNumero(), false));
+                                if(result.getNacional().equals("")){
+                                    seleccion.add(new contact_result(result.getId(), result.getNombre(), "", "", result.getNumero(), false));
+                                }else{
+                                    seleccion.add(new contact_result(result.getId(), result.getNombre(), "Lada sin costo", "", result.getNumero(), false));
+                                }
                                 result.setSelected(false);
                             }
                         }
@@ -137,12 +166,17 @@ public class resultado extends AppCompatActivity {
                     }
                 });
 
-
                 dialog2.show();
 
             }
         });
-
+        closes = dialog.findViewById(R.id.close_ico);
+        closes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 
@@ -402,33 +436,36 @@ public class resultado extends AppCompatActivity {
                         || clean.substring(0,3).equals("045")
                         || clean.substring(0,2).equals("01")
                         || clean.substring(0,1).equals("1")) {
-
                     if (clean.substring(0, 2).equals("52")) {
                         if (clean.substring(0, 5).equals("52044")) {
-                            tipo = "  Celular México";
+                            //tipo = "  Celular México";
                             mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "044 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
                         } else if (clean.substring(0, 5).equals("52045")) {
-                            tipo = "  Celular México";
+                            //tipo = "  Celular México";
                             mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "045 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
                         }  else if (clean.substring(0, 4).equals("5201")) {
-                            tipo = "  Celular México";
+                            //tipo = "  Celular México";
                             mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "01 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10),false));
                         } else if (clean.substring(0, 3).equals("521")) {
-                            tipo = "  Celular México";
+                            //tipo = "  Celular México";
                             mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "1 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10),false));
                         }
                     } else if (clean.substring(0, 3).equals("044")) {
-                        tipo = "  Celular México";
+                        //tipo = "  Celular México";
                         mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "044 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
                     } else if (clean.substring(0, 3).equals("045")) {
-                        tipo = "  Celular México";
+                        //tipo = "  Celular México";
                         mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "045 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
                     } else if (clean.substring(0, 2).equals("01")) {
-                        tipo = "  Celular México";
-                        mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "01 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
+                        if(clean.substring(0, 5).equals("01800") || clean.substring(0, 5).equals("01900")){
+                            mContactList.add(new contact_result(c.getInt(0), c.getString(1), "LC ", "01 ", "("+lastFourDigits.substring(0,3)+")"+" "+lastFourDigits.substring(3,7)+" "+lastFourDigits.substring(7,10), false));
+                        }else{
+                            //tipo = "  Celular México";
+                            mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "01 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
+                        }
 
                     } else if (clean.substring(0, 1).equals("1")) {
-                        tipo = "  Celular México";
+                       //tipo = "  Celular México";
                         mContactList.add(new contact_result(c.getInt(0), c.getString(1), "+52 ", "1 ", "("+lastFourDigits.substring(0,2)+")"+" "+lastFourDigits.substring(2,6)+" "+lastFourDigits.substring(6,10), false));
                     }
 

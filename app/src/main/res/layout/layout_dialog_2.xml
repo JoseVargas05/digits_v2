@@ -4,7 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/redTransparent">
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/baseline_close_white_48"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:id="@+id/close"/>
     <LinearLayout android:id="@+id/footerlayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -14,7 +20,7 @@
         <TextView
             android:layout_width="340dp"
             android:layout_height="110dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:text="No te preocupes por esta operacción \nya que en cualquier momento \npodrás restaurar el estado original \n de tus contactos desde la aplicación"
             android:gravity="center"
             android:textColor="#ffff"

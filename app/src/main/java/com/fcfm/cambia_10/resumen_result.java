@@ -6,11 +6,13 @@ public class resumen_result{
     private int id;
     private String nombre;
     private String numero;
+    private String nacional;
 
-    public resumen_result(int id, String nombre, String numero) {
+    public resumen_result(int id, String nombre, String numero, String nacional) {
         this.id = id;
         this.nombre = nombre;
         this.numero = numero;
+        this.nacional = nacional;
     }
 
     public int getId() {
@@ -35,5 +37,13 @@ public class resumen_result{
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getNacional() {
+        return nacional;
+    }
+
+    public void setNacional(String nacional) {
+        this.nacional = nacional;
     }
 }

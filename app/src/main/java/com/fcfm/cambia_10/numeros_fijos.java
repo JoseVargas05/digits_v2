@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -78,7 +79,7 @@ public class numeros_fijos extends AppCompatActivity {
             String number = c.getString(2);
             String clean = number.replaceAll("[^\\d]", "");
             int count = clean.length();
-            if (count <= 8) {
+            if (count <= 8 && count >= 7) {
                 mFijosList.add(new fijo_result(c.getInt(0), c.getString(1), "", number, "", false));
             }
         }
@@ -98,12 +99,10 @@ public class numeros_fijos extends AppCompatActivity {
                 }
                 mFijosList.set(i, result);
 
-                //DETECTA EL LISTBOX Y DEPENDIENDO DEL VALOR AGREGA A LOS SELECCIONADOS ESE ESTADO QUE SELECCIONO, AQUITAR = LADA 3 O 4 DIGITOS
-                //DESPUES DESELECCIONA TODOS ASIGNANDOLES EL VALOR SELECTED A FALSE
                 //Update adapter
                 adapter2.UpdateRecords(mFijosList);
                 //Display msg with id from view.getTag
-                Toast.makeText(getApplicationContext(), "Contacto id: " + result.getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Contacto id: " + result.getId(), Toast.LENGTH_SHORT).show();
             }
         });
         continuar = findViewById(R.id.continuar);
@@ -111,14 +110,21 @@ public class numeros_fijos extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fijo_result result;
-                //OBTIENE LOS FIJOS QUE SU AQUITAR != "", IF SELECTED NO SIRVE
-                //DETECTAR SI ES DE 7 U 8 DIGITOS PARA SOLO AGREGAR NUMERO SIN EL 52 Y PASARLO A RESUMEN
-                //AQUI VA EL FORMATEO DEL NUMERO A LOCAL CONCATENANDO LA LADA
+                String lastFourDigits;
                 for (int i = mFijosList.size() - 1; i >= 0; i--) {
                     result = mFijosList.get(i);
-                    if (result.isSelected()) {
-                        SeleccionAnt.add(new contact_result(result.getId(), result.getNombre(), "n", "n", result.getNumero(), false));
+                    if (result.getEstado().equals("")){}else {
+                        String number = result.getNumero();
+                        String clean = number.replaceAll("[^\\d]", "");
+                        if (clean.length() == 8) {
+                            lastFourDigits = clean.substring(clean.length() - 8);
+                            SeleccionAnt.add(new contact_result(result.getId(), result.getNombre(), result.getEstado(), "", "(" + result.getAgregar() + ")" + " " + lastFourDigits.substring(0, 4) + " " + lastFourDigits.substring(4, 8), false));
+                        } else if (clean.length() == 7) {
+                            lastFourDigits = clean.substring(clean.length() - 7);
+                            SeleccionAnt.add(new contact_result(result.getId(), result.getNombre(), result.getEstado(), "", "(" + result.getAgregar() + ")" + " " + lastFourDigits.substring(0, 4) + " " + lastFourDigits.substring(4, 7), false));
+                        }
                         result.setSelected(false);
+
                     }
                 }
                 Intent intent = new Intent(getApplicationContext(), resumen.class);
@@ -161,13 +167,17 @@ public class numeros_fijos extends AppCompatActivity {
             public void onClick(View view) {
                 fijo_result result;
                 Source = list_estados.getText().toString();
-                for (int i = mFijosList.size() - 1; i >= 0; i--){
+                if (Source.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Seleccione un estado", Toast.LENGTH_SHORT).show();
+                }else {
+                for (int i = mFijosList.size() - 1; i >= 0; i--) {
                     result = mFijosList.get(i);
-                    if(result.isSelected()){
-                        for(int f = estados_lista.length - 1; f >= 0; f--){
-                            if(Source.equals(estados_lista[f])){
-                                result.setAgregar(estados_ladas[f]+" ");
+                    if (result.isSelected()) {
+                        for (int f = estados_lista.length - 1; f >= 0; f--) {
+                            if (Source.equals(estados_lista[f])) {
+                                result.setAgregar(estados_ladas[f]);
                                 result.setEstado(estados_lista[f]);
+                                result.setSelected(false);
                                 break;
                             }
                         }
@@ -177,6 +187,7 @@ public class numeros_fijos extends AppCompatActivity {
                 //Update adapter
                 adapter2.UpdateRecords(mFijosList);
                 dialog.dismiss();
+                 }
             }
         });
         flecha = dialog.findViewById(R.id.arrow);
@@ -185,6 +196,16 @@ public class numeros_fijos extends AppCompatActivity {
             public void onClick(View view) {
                 list_estados.showDropDown();
             }
+        });
+        list_estados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                InputMethodManager in = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(arg1.getWindowToken(), 0);
+                in.hideSoftInputFromWindow(arg1.getApplicationWindowToken(), 0);
+            }
+
         });
 
         dialog.show();
