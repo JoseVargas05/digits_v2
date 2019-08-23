@@ -40,7 +40,7 @@ public class numeros_fijos extends AppCompatActivity {
     private Button ok;
     AutoCompleteTextView list_estados;
     ImageView flecha;
-
+    String Source;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,11 +160,17 @@ public class numeros_fijos extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fijo_result result;
+                Source = list_estados.getText().toString();
                 for (int i = mFijosList.size() - 1; i >= 0; i--){
                     result = mFijosList.get(i);
                     if(result.isSelected()){
-                        result.setAgregar("81 ");
-                        result.setEstado("Nuevo León");
+                        for(int f = estados_lista.length - 1; f >= 0; f--){
+                            if(Source.equals(estados_lista[f])){
+                                result.setAgregar(estados_ladas[f]+" ");
+                                result.setEstado(estados_lista[f]);
+                                break;
+                            }
+                        }
                         mFijosList.set(i, result);
                     }
                 }
@@ -199,19 +205,19 @@ public class numeros_fijos extends AppCompatActivity {
                     "Tlaxcala","Toluca","Torreón","Tuxpan","Tuxtla Gutiérrez","Uruapan","Veracruz","Villahermosa","Zacatecas",
                     "Zacatepec","Zamora","Zihuatanejo"};
     private static final String[] estados_ladas =
-            new String[]{"Acapulco","Aguascalientes","Apizaco","Atlixco","Campeche","Cancún","Celaya","Ciudad Cuauhtémoc",
-                    "Ciudad de México","Ciudad del Carmen","Ciudad Delicias","Ciudad Guzmán","Ciudad Juárez","Ciudad Lázaro Cárdenas",
-                    "Ciudad Mante","Ciudad Obregón","Ciudad Valles","Ciudad Victoria","Coatzacoalcos","Colima","Córdoba",
-                    "Cuautla","Cuernavaca","Culiacán","Chetumal","Chihuahua","Chilpacingo","Chinameca",
-                    "Durango","Ensenada","Fresnillo","Guadalajara","Guanajuato","Guaymas","Hermosillo","Irapuato","Ixtepec","Jalapa","Jiménez",
-                    "La Paz","La Piedad","Lagos de Moreno","León","Lerma","Los Mochis","Manzanillo","Matamoros","Mayanalán","Mazatlán","Mérida",
-                    "Mexicali","Monclova","Monterrey","Morelia","Moroleón","Navojao","Nogales","Nuevo Laredo","Oaxaca",
-                    "Ocotlán","Orizaba","Pachuca","Parral","Polotitlán","Poza Rica","Puebla","Puerto Vallarta","Querétaro",
-                    "Reynosa","Sabinas","Sahuayo","Salamanca","Saltillo","San José del Cabo","San Luis Potosí",
-                    "San Luis Río Colorado","San Marcos Nepantla","San Martín Texmelucan","San Miguel de Allende","Singuilucan",
-                    "Tampico","Tapachula","Taxco","Tehuacán","Tepatitlan","Tepeji del Rio","Tepic","Texcoco","Tijuana",
-                    "Tlaxcala","Toluca","Torreón","Tuxpan","Tuxtla Gutiérrez","Uruapan","Veracruz","Villahermosa","Zacatecas",
-                    "Zacatepec","Zamora","Zihuatanejo"};
+            new String[]{"744","449","241","244","981","998","461","625",
+                    "55","938","639","341","656","753",
+                    "831","644","481","834","921","312","271",
+                    "735","777","667","983","614","747","922",
+                    "618","646","493","33","473","622","662","462","971","228","878",
+                    "612","352","474","477","728 ","668","314","868","733","669","999",
+                    "686","866","81","443","445","642","631","867","951",
+                    "392","272","771","627","427","782","222","322","442",
+                    "899","861","353","464","844","624","444",
+                    "653","594","248","415","775",
+                    "833","962","762","238","378","773","311","595","664",
+                    "246","722","871","783","961","452","229","993","492",
+                    "734","351","755"};
 
     private static Bitmap takeScreenShot(Activity activity)
     {
